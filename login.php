@@ -1,8 +1,14 @@
 <?php
-
-if (isset($_POST)) {
-$email=$_POST['email'];
-$password=$_POST['password'];
+function test_input($data)
+{
+	$data = trim($data);
+	$data = stripslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
+}
+if (isset($_POST)) {	
+$email=test_input($_POST['email']);
+$password=test_input($_POST['password']);
 $hashed_password = md5($password);
 
 include_once 'DB_Connect.php';

@@ -1,5 +1,12 @@
 <?php
-$statisticid=$_GET['statisticid'];
+function test_input($data)
+{
+	$data = trim($data);
+	$data = stripslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
+}
+$statisticid=test_input($_GET['statisticid']);
  //database constants
  include('DB_Connect.php');
  

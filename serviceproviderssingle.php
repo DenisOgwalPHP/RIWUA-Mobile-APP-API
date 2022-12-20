@@ -1,5 +1,12 @@
 <?php
-$providers=$_GET['providerid'];
+function test_input($data)
+{
+	$data = trim($data);
+	$data = stripslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
+}
+$providers=test_input($_GET['providerid']);
  include('DB_Connect.php');
  
   //creating a query

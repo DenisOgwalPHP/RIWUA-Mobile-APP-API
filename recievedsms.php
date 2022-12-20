@@ -1,5 +1,12 @@
 <?php
- $phone=$_GET['phone']; 
+function test_input($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+ $phone=test_input($_GET['phone']); 
  //database constants
  include('DB_Connect.php');
  
@@ -15,14 +22,14 @@
  $response = array(); 
  
  //traversing through all the result 
- while($stmt->fetch()){
- $temp = array();
- 
- $temp['Sender'] = $sender; 
- $temp['Message'] = $message; 
- $temp['Timesent'] = $timesent; 
- array_push($response, $temp);
- }
+while ($stmt->fetch()) {
+    $temp = array();
+
+    $temp['Sender'] = $sender;
+    $temp['Message'] = $message;
+    $temp['Timesent'] = $timesent;
+    array_push($response, $temp);
+}
  
  //displaying the result in json format 
  echo json_encode($response);
